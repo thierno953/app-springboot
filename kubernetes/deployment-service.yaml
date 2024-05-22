@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: projectspringboot-deployment
+  name: projectspringboot
 spec:
   selector:
     matchLabels:
@@ -18,18 +18,19 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-
+          name: http
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: projectspringboot-svc
+  name: jobapplication-svc
 spec:
   selector:
     app: projectspringboot
   ports:
-  - protocol: "TCP"
+  - name: http
+    protocol: "TCP"
     port: 8080
     targetPort: 8080
   type: LoadBalancer
