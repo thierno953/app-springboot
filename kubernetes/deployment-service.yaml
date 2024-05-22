@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projectspringboot-deployment
+spec:
+  selector:
+    matchLabels:
+      app: projectspringboot
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: projectspringboot
+    spec:
+      containers:
+      - name: projectspringboot
+        image: thiernos/projectspringboot:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: projectspringboot-svc
+spec:
+  selector:
+    app: projectspringboot
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
