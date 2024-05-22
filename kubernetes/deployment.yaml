@@ -20,17 +20,5 @@ spec:
         - containerPort: 8080
           name: http
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jobapplication-svc
-spec:
-  selector:
-    app: projectspringboot
-  ports:
-  - name: http
-    protocol: "TCP"
-    port: 8080
-    targetPort: 8080
-  type: LoadBalancer
+
+
